@@ -1,0 +1,18 @@
+[
+    {
+        "mailBoxTitle": "inbox",
+        "mailBoxID": 1
+    },
+    {
+        "mailBoxTitle": "sent",
+        "mailBoxID": 2
+    },
+    {
+        "mailBoxTitle": "draft",
+        "mailBoxID": 3
+    },
+    {
+        "mailBoxTitle": "spam",
+        "mailBoxID": 4
+    }
+]

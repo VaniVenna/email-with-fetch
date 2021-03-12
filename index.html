@@ -1,0 +1,52 @@
+<html>
+    <head></head>
+    <body>
+        <div id="mailContainerId"></div>
+        <script src="./scripts/leftMenu.js"></script>
+        <script src="./scripts/displayMailItems.js"></script>
+        <script src="./scripts/clickEvents.js"></script>
+    </body>
+    <script>
+        var parentContainer = document.querySelector("#mailContainerId");
+
+        let file = "./JSON/leftMenu.json";
+ 
+        fetch (file)
+        .then(menuItemObj => menuItemObj.text())
+        .then(leftMenuItems => new leftPanel(JSON.parse(leftMenuItems), parentContainer))
+        
+        setTimeout (function() {
+            document.querySelector("#menuItems").childNodes.forEach(element => {
+                element.onclick = function (e) {
+                    // console.log(this.leftMenuInstance.commonCheck.checked);
+                    /* To disable the common checkbox if it is checked/selected */
+                    // if (this.leftMenuInstance.commonCheck.checked === true)
+                    //     this.leftMenuInstance.commonCheck.checked = false;
+
+                    // if (this.leftMenuInstance.deleteIconCommon.disabled === false)
+                    //     this.leftMenuInstance.deleteIconCommon.disabled = true;
+
+                    var mailObj = document.getElementsByClassName("mailBoxParent");
+
+                    if(mailObj) {
+                        for (const iterator in mailObj) {
+                            mailObj[iterator].innerHTML = "";
+                        }
+                    }
+
+                    loadMailItems(e.target.id);
+                }
+            });
+            loadMailItems(1);
+        }, 1000);
+
+        function loadMailItems(id) {
+            // let mailID = "/JSON/"+id+".json";
+            let mailID = `/JSON/${id}.json`;
+
+            fetch(mailID)
+            .then(mailObj => mailObj.text())
+            .then(content => new displayMailItems(JSON.parse(content), parentContainer))
+        }
+    </script>
+</html>
