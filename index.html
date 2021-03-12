@@ -42,7 +42,7 @@
 
         function loadMailItems(id) {
             // let mailID = "/JSON/"+id+".json";
-            let mailID = `/JSON/${id}.json`;
+            let mailID = `/${id}.json`;
 
             fetch(mailID)
             .then(mailObj => mailObj.text())
